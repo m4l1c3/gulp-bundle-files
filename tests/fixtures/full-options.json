@@ -1,0 +1,26 @@
+{
+	"concat": {
+		"active": true
+	},
+	"less": {
+		"active": true
+	},
+	"uglify": {
+		"active": false
+	},
+	"destinationFolder": "dist",
+	"files": {
+		"css/app.css": [
+			"src/css/test1.css",
+			"src/caa/test2.css"
+		],
+		"js/app.js": [
+			"src/js/test1.js",
+			"src/js/test2.js"
+		],
+		"js/app2.js": [
+			"src/js/test1.js",
+			"src/js/test3.js"
+		]
+	}
+}
