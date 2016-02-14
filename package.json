@@ -4,7 +4,7 @@
   "description": "Gulp module to concatenate configured bundles",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha tests",
     "coverage": "instabul cover _mocha"
   },
   "repository": {
