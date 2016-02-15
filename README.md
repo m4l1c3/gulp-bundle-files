@@ -1,1 +1,1 @@
-#Gulp Bundle Files [![Build Status](https://travis-ci.org/m4l1c3/gulp-bundle-files.png)](https://travis-ci.org/m4l1c3/gulp-bundle-files)
+#Gulp Bundle Files [![Build Status](https://travis-ci.org/m4l1c3/gulp-bundle-files.png)](https://travis-ci.org/m4l1c3/gulp-bundle-files)[![Coverage Status](https://coveralls.io/repos/github/m4l1c3/gulp-bundle-files/badge.svg?branch=master)](https://coveralls.io/github/m4l1c3/gulp-bundle-files?branch=master)
