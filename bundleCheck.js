@@ -2,7 +2,7 @@
 var fs = require('fs'),
 	path = require('path');
 
-var currentBundle = function(i, items) {
+var Bundle = function(i, items) {
 	var self = this;
 	self.index = i;
 	self.name = items[self.index];
@@ -38,7 +38,7 @@ var bundleCheck = function(bundles) {
 	var items = bundles;
 	for(var i in items) {
 		if (!fs.existsSync(path.join(__dirname, items[i]))) {
-			missing_bundle_items.push(new currentBundle(i, items));
+			missing_bundle_items.push(new Bundle(i, items));
 		}
 	}
 	if(!missing_bundle_items.length) {

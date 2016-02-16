@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
+    "eslint": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
     "istanbul": "^0.4.2",
@@ -39,7 +40,6 @@
     "mocha-lcov-reporter": "^1.0.0",
     "should": "^8.2.2",
     "stream-array": "^1.1.1",
-    "stream-assert": "^2.0.3",
-    "eslint": ""
+    "stream-assert": "^2.0.3"
   }
 }
