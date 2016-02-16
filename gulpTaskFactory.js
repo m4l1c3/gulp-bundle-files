@@ -7,7 +7,8 @@ var concat = require('gulp-concat'),
 	gutil = require('gulp-util'),
 	path = require('path'),
 	config = require('./package.json'),
-	gulp = require('gulp');
+	gulp = require('gulp'),
+	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
 	return gulp.task(gulpTask, function () {
