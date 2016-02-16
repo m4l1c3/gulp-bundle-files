@@ -33,7 +33,7 @@
   "devDependencies": {
     "coveralls": "^2.11.6",
     "equals": "^1.0.1",
-    "eslint": "^2.1.0",
+    "eslint": "^1.1.0",
     "expect": "^1.14.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",

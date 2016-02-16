@@ -46,7 +46,7 @@ describe('gulp-bundle-files', function() {
 				if(bundleTest.isLast() === undefined) {
 					self.isValid = false;
 					throw new PluginError(config.name, 'Bundle test has failed missing isLast');
-				};
+				}
 			}, bundleTest = new BundleTest();
 			bundleTest.isValid.should.equal(true);
 		});
@@ -130,6 +130,5 @@ describe('gulp-bundle-files', function() {
 				new PluginError(config.name, 'No files inside named bundle')
 			);
 		});
-;
 	});
 });
