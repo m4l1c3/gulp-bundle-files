@@ -1,0 +1,7 @@
+"tests": [
+    "**/tests/**"
+],
+"critics": {
+    "lint": {"eslint"},
+    "wc": { "limit": 5000 }
+}
