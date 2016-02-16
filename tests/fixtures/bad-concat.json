@@ -2,15 +2,7 @@
   "concat": {
     "active": true
   },
-  "less": {
-    "active": true,
-    "config": {}
-  },
   "uglify": {
-    "active": true,
-    "config": {}
-  },
-  "autoprefixer": {
     "active": true,
     "config": {}
   },

@@ -1,7 +1,9 @@
 var bundle = require('../'),
 	Bundle = require('../Bundle.js').Bundle,
 	bundleChecker = require('../bundleCheck.js').BundleCheck,
+	expect = require('expect'),
 	should = require('should'),
+	equals = require('equals'),
 	assert = require('stream-assert'),
 	gutil = require('gulp-util'),
 	PluginError = gutil.PluginError,
@@ -26,6 +28,29 @@ describe('gulp-bundle-files', function() {
 			);
 		});
 
+		it('should pass, upon creation bundleTest will return true if all is well', function() {
+			var BundleTest = function() {
+				var self = this,
+					Bundle = require('../Bundle').Bundle,
+					gutil = require('gulp-util'),
+					PluginError = gutil.PluginError;
+				self.isValid = true;
+
+				var bundleTest = new Bundle(0, [0, 'blahblahblah.js']);
+
+				if (bundleTest.getName() === undefined) {
+					self.isValid = false;
+					throw new PluginError(config.name, 'Bundle test has failed, missing name');
+				}
+
+				if(bundleTest.isLast() === undefined) {
+					self.isValid = false;
+					throw new PluginError(config.name, 'Bundle test has failed missing isLast');
+				};
+			}, bundleTest = new BundleTest();
+			bundleTest.isValid.should.equal(true);
+		});
+
 		it('should throw, fixture with bad file', function() {
 			(function() {
 				fixture.get('bag-uglify');
@@ -47,24 +72,6 @@ describe('gulp-bundle-files', function() {
 				gulpTaskFactory('concat', fixture.get('bad-concat'));
 			}).should.throw(
 				new PluginError(config.name, 'No concat settings')
-			);
-		});
-
-
-
-		it('should throw, No less settings', function() {
-			(function() {
-				gulpTaskFactory('less', fixture.get('bad-less'));
-			}).should.throw(
-				new PluginError(config.name, 'No less settings')
-			);
-		});
-
-		it('should throw, when autoprefixer is on without a config', function() {
-			(function() {
-				gulpTaskFactory('autoprefixer', fixture.get('bad-autoprefixer'));
-			}).should.throw(
-				new PluginError(config.name, 'No autoprefixer settings')
 			);
 		});
 

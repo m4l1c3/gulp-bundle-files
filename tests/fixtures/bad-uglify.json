@@ -3,16 +3,8 @@
     "active": true,
     "config": {}
   },
-  "less": {
-    "active": true,
-    "config": {}
-  },
   "uglify": {
     "active": true
-  },
-  "autoprefixer": {
-    "active": true,
-    "config": {}
   },
   "destinationFolder": "dist",
   "files": {
