@@ -12,7 +12,7 @@ var concat = require('gulp-concat'),
 
 exports.gulpTaskFactory = function(gulpTask, options) {
 	var task = function (gulpTask, options) {
-		var isJs = gulpTask.toString().endsWith('.js'),
+		var isJs = gulpTask.indexOf('.js') > 0,
 			isCss = !isJs;
 
 		if (options.concat !== undefined && options.concat.active && options.concat.config === undefined) {
