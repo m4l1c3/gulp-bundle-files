@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "eqeqeq": 0,
+    "curly": 2,
+    "quotes": [2, "single"]
+
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}

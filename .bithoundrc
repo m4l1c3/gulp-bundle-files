@@ -2,6 +2,6 @@
     "**/tests/**"
 ],
 "critics": {
-    "lint": {"engine": "eslint"},
+    "lint": {"engine": "jshint"},
     "wc": { "limit": 5000 }
 }
