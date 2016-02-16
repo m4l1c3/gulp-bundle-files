@@ -8,8 +8,7 @@
     "config": {}
   },
   "uglify": {
-    "active": false,
-    "config": {}
+    "active": true
   },
   "autoprefixer": {
     "active": true,

@@ -8,12 +8,11 @@
     "config": {}
   },
   "uglify": {
-    "active": false,
+    "active": true,
     "config": {}
   },
   "autoprefixer": {
-    "active": true,
-    "config": {}
+    "active": true
   },
   "destinationFolder": "dist",
   "files": {

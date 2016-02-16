@@ -4,11 +4,10 @@
     "config": {}
   },
   "less": {
-    "active": true,
-    "config": {}
+    "active": true
   },
   "uglify": {
-    "active": false,
+    "active": true,
     "config": {}
   },
   "autoprefixer": {

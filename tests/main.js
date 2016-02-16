@@ -1,38 +1,86 @@
 var bundle = require('../'),
+	Bundle = require('../Bundle.js').Bundle,
+	bundleChecker = require('../bundleCheck.js').BundleCheck,
 	should = require('should'),
 	assert = require('stream-assert'),
-	//test = require('./test-stream'),
 	gutil = require('gulp-util'),
 	PluginError = gutil.PluginError,
 	gulp = require('gulp'),
 	config = require('../package.json'),
-	fixtures = require('./fixtures').fixtures;
+	fixtures = require('./fixtures').fixtures,
+	gulpTaskFactory = require('../gulpTaskFactory').gulpTaskFactory;
 	require('mocha');
 
 
-
-//var newBundlePath = __dirname,
-//	newBundleConfig = 'options.json',
-	//newBundle = path.join(newBundlePath, newBundleConfig);
-
 describe('gulp-bundle-files', function() {
-	//before(function(done) {
-	//	fs.writeFile(newBundle, gutil.log('Creating bundle complete: ' + done, done));
-	//});
-	//
-	//after(function(done) {
-	//	fs.unlink(newBundle, done);
-	//});
 
 	//noinspection JSUnresolvedFunction
 	var fixture = new fixtures();
 
 	describe('bundle()', function() {
+		it('should throw, No uglify settings', function() {
+			(function() {
+				gulpTaskFactory('uglify', fixture.get('bad-uglify'));
+			}).should.throw(
+				new PluginError(config.name, 'No uglify settings')
+			);
+		});
+
+		it('should throw, fixture with bad file', function() {
+			(function() {
+				fixture.get('bag-uglify');
+			}).should.throw(
+				new TypeError('Path must be a string. Received undefined')
+			);
+		});
+
+		it('should throw, bundle checker doesn\'t work', function() {
+			(function() {
+				bundleChecker(fixture.get('bundles'), true);
+			}).should.throw(
+				new PluginError(config.name, 'Bundle check is not working')
+			);
+		});
+
+		it('should throw, No concat settings', function() {
+			(function() {
+				gulpTaskFactory('concat', fixture.get('bad-concat'));
+			}).should.throw(
+				new PluginError(config.name, 'No concat settings')
+			);
+		});
+
+
+
+		it('should throw, No less settings', function() {
+			(function() {
+				gulpTaskFactory('less', fixture.get('bad-less'));
+			}).should.throw(
+				new PluginError(config.name, 'No less settings')
+			);
+		});
+
+		it('should throw, when autoprefixer is on without a config', function() {
+			(function() {
+				gulpTaskFactory('autoprefixer', fixture.get('bad-autoprefixer'));
+			}).should.throw(
+				new PluginError(config.name, 'No autoprefixer settings')
+			);
+		});
+
 		it('should throw, when destination folder is missing', function() {
 			(function() {
 				bundle(fixture.get('no-options'));
 			}).should.throw(
 				new PluginError(config.name, 'Missing destinationFolder gulp-bundle-files')
+			);
+		});
+
+		it('should throw, bundle does not have any items', function() {
+			(function() {
+				Bundle(0, fixture.get('no-items'));
+			}).should.throw(
+				new PluginError(config.name, 'No items passed into bundle')
 			);
 		});
 
@@ -75,5 +123,6 @@ describe('gulp-bundle-files', function() {
 				new PluginError(config.name, 'No files inside named bundle')
 			);
 		});
+;
 	});
 });

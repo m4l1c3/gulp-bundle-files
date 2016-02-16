@@ -11,24 +11,40 @@ var concat = require('gulp-concat'),
 	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
-	return gulp.task(gulpTask, function () {
+	var task = function (gulpTask, options) {
 		var isJs = gulpTask.endsWith('.js'),
 			isCss = !isJs;
+
+		if (options.concat !== undefined && options.concat.active && options.concat.config === undefined) {
+			throw new PluginError(config.name, 'No concat settings');
+		}
+
+		if (options.uglify !== undefined && options.uglify.active && options.uglify.config === undefined) {
+			throw new PluginError(config.name, 'No uglify settings');
+		}
+
+		if (options.less !== undefined && options.less.active && options.less.config === undefined) {
+			throw new PluginError(config.name, 'No less settings');
+		}
+
+		if (options.autoprefixer !== undefined && options.autoprefixer.active && options.autoprefixer.config === undefined) {
+			throw new PluginError(config.name, 'No autoprefixer settings');
+		}
 
 		try {
 			return gulp.src(options.files[gulpTask])
 				.pipe(
 					gulpif(
-						options.concat !== undefined && options.concat.active && isJs,
-						function() {
+						options.concat.active && isJs,
+						function () {
 							return concat(gulpTask);
 						}
 					)
 				)
 				.pipe(
 					gulpif(
-						options.uglify !== undefined && options.uglify.active && isJs,
-						function() {
+						options.uglify.active && isJs,
+						function () {
 							return uglify(options.uglify.config);
 						}
 					)
@@ -36,7 +52,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 				.pipe(
 					gulpif(
 						options.less !== undefined && options.less.active && isCss,
-						function() {
+						function () {
 							return less(options.less.config);
 						}
 					)
@@ -44,7 +60,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 				.pipe(
 					gulpif(
 						options.autoprefixer !== undefined && options.autoprefixer.active && isCss,
-						function() {
+						function () {
 							return autoprefixer(options.autoprefixer.config);
 						}
 					)
@@ -54,5 +70,8 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			gutil.log(gutil.colors.red('Error creating bundle: ' + gulpTask));
 			throw new PluginError(config.name, 'Error creating bundle.');
 		}
-	});
+	};
+
+	var GulpTask = task(gulpTask, options);
+	return task;
 };

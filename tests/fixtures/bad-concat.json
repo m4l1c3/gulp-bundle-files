@@ -1,14 +1,13 @@
 {
   "concat": {
-    "active": true,
-    "config": {}
+    "active": true
   },
   "less": {
     "active": true,
     "config": {}
   },
   "uglify": {
-    "active": false,
+    "active": true,
     "config": {}
   },
   "autoprefixer": {
