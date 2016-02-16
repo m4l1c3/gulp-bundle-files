@@ -4,7 +4,6 @@ var bundle = require('../'),
 	//test = require('./test-stream'),
 	gutil = require('gulp-util'),
 	PluginError = gutil.PluginError,
-	File = gutil.File,
 	gulp = require('gulp'),
 	config = require('../package.json'),
 	fixtures = require('./fixtures').fixtures;
@@ -42,39 +41,39 @@ describe('gulp-bundle-files', function() {
 				bundle(fixture.get('incorrect-format-of-files'));
 			}).should.throw(
 				new PluginError(config.name, 'File input in wrong format, please use an array or object.')
-			)
+			);
 		});
 
 		it('should throw, when options.files has no bundles', function() {
 			(function() {
-				bundle(fixture.get('no-bundles'))
+				bundle(fixture.get('no-bundles'));
 			}).should.throw(
 				new PluginError(config.name, 'No file input stored in options.files.')
-			)
+			);
 		});
 
 		it('should throw, when bundle is missing files', function() {
 			(function() {
-				bundle(fixture.get('full-options'))
+				bundle(fixture.get('full-options'));
 			}).should.throw(
 				new PluginError(config.name, 'Error creating bundle, bundles are missing files.')
-			)
+			);
 		});
 
 		it('should throw, when unable to create bundle, missing bundle name', function() {
 			(function() {
-				bundle(fixture.get('no-bundle-name'))
+				bundle(fixture.get('no-bundle-name'));
 			}).should.throw(
 				new PluginError(config.name, 'Error creating bundle: no bundle name')
-			)
+			);
 		});
 
 		it('should throw, when unable to find items for a bundle', function() {
 			(function() {
-				bundle(fixture.get('no-bundle-contents'))
+				bundle(fixture.get('no-bundle-contents'));
 			}).should.throw(
 				new PluginError(config.name, 'No files inside named bundle')
-			)
+			);
 		});
 	});
 });
