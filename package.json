@@ -24,21 +24,22 @@
   },
   "homepage": "https://github.com/m4l1c3/gulp-bundle-files#readme",
   "dependencies": {
-    "gulp-concat": "2.6.0",
-    "gulp-if": "2.0.0",
-    "gulp-less": "3.0.5",
-    "gulp-uglify": "1.5.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7"
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
-    "gulp": "3.9.1",
-    "gulp-sourcemaps": "1.6.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.6.0",
     "istanbul": "^0.4.2",
-    "mocha": "2.4.5",
+    "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.0.0",
-    "should": "8.2.2",
-    "stream-array": "1.1.1",
-    "stream-assert": "2.0.3"
+    "should": "^8.2.2",
+    "stream-array": "^1.1.1",
+    "stream-assert": "^2.0.3",
+    "eslint": ""
   }
 }
