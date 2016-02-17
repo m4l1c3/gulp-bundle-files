@@ -6,7 +6,27 @@ var bundle = require('../'),
 	PluginError = gutil.PluginError,
 	config = require('../package.json'),
 	fixtures = require('./fixtures').fixtures,
-	gulpTaskFactory = require('../gulpTaskFactory').gulpTaskFactory;
+	gulpTaskFactory = require('../gulpTaskFactory').gulpTaskFactory,
+	BundleTest = function() {
+		var self = this,
+			Bundle = require('../Bundle').Bundle,
+			gutil = require('gulp-util'),
+			PluginError = gutil.PluginError;
+		self.isValid = true;
+
+		self.bundle = new Bundle(0, [0, 'blahblahblah.js']);
+
+		if (self.bundle.getName() === undefined) {
+			self.isValid = false;
+			throw new PluginError(config.name, 'Bundle test has failed, missing name');
+		}
+
+		if(self.bundle.isLast() === undefined) {
+			self.isValid = false;
+			throw new PluginError(config.name, 'Bundle test has failed missing isLast');
+		}
+	},
+	bundleTest = new BundleTest();
 	require('mocha');
 
 
@@ -25,26 +45,17 @@ describe('gulp-bundle-files', function() {
 		});
 
 		it('should pass, upon creation bundleTest will return true if all is well', function() {
-			var BundleTest = function() {
-				var self = this,
-					Bundle = require('../Bundle').Bundle,
-					gutil = require('gulp-util'),
-					PluginError = gutil.PluginError;
-				self.isValid = true;
-
-				var bundleTest = new Bundle(0, [0, 'blahblahblah.js']);
-
-				if (bundleTest.getName() === undefined) {
-					self.isValid = false;
-					throw new PluginError(config.name, 'Bundle test has failed, missing name');
-				}
-
-				if(bundleTest.isLast() === undefined) {
-					self.isValid = false;
-					throw new PluginError(config.name, 'Bundle test has failed missing isLast');
-				}
-			}, bundleTest = new BundleTest();
 			bundleTest.isValid.should.equal(true);
+		});
+
+		it('should pass, upon creation a bundle should have getName as a function', function() {
+			var getNameType = typeof bundleTest.bundle.getName;
+			getNameType.should.equal('function');
+		});
+
+		it('should pass, upon creation a bundle should have getName as a function', function() {
+			var isLastType = typeof bundleTest.bundle.isLast;
+			isLastType.should.equal('function');
 		});
 
 		it('should throw, fixture with bad file', function() {

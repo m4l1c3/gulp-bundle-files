@@ -1,7 +1,6 @@
 'use strict';
 
 var config = require('./package.json'),
-	path = require('path'),
 	gutil = require('gulp-util'),
 	gulpTaskFactory = require('./gulpTaskFactory'),
 	bundleCheck = require('./bundleCheck').BundleCheck,
@@ -16,7 +15,7 @@ module.exports  = function(options) {
 	if(options.destinationFolder === undefined || options.destinationFolder.length < 1) {
 		throw new PluginError(config.name, 'Missing destinationFolder gulp-bundle-files');
 	}
-	if ("object" !== typeof options.files) {
+	if ('object' !== typeof options.files) {
 		throw new PluginError(config.name, 'File input in wrong format, please use an array or object.');
 	}
 
