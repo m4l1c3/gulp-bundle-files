@@ -1,13 +1,9 @@
 var bundle = require('../'),
 	Bundle = require('../Bundle.js').Bundle,
 	bundleChecker = require('../bundleCheck.js').BundleCheck,
-	expect = require('expect'),
 	should = require('should'),
-	equals = require('equals'),
-	assert = require('stream-assert'),
 	gutil = require('gulp-util'),
 	PluginError = gutil.PluginError,
-	gulp = require('gulp'),
 	config = require('../package.json'),
 	fixtures = require('./fixtures').fixtures,
 	gulpTaskFactory = require('../gulpTaskFactory').gulpTaskFactory;
