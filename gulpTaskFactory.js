@@ -45,7 +45,5 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			throw new PluginError(config.name, 'Error creating bundle.');
 		}
 	};
-
-	var GulpTask = task(gulpTask, options);
-	return task;
+	return task(gulpTask, options);
 };

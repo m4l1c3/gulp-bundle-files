@@ -10,7 +10,7 @@ var fixtures = function() {
 	this.init = function() {
 		var files = fs.readdirSync(self.getPath());
 		for(var i in files) {
-			var key = (files.hasOwnProperty(i)) ? files[i].substring(0, files[i].indexOf('.')) : "";
+			var key = (files.hasOwnProperty(i)) ? files[i].substring(0, files[i].indexOf('.')) : '';
 			self.data[key] = files[i];
 		}
 	};
