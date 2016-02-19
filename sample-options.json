@@ -1,0 +1,17 @@
+{
+  "concat": {
+    "active": true,
+    "config": {}
+  },
+  "uglify": {
+    "active": false,
+    "config": {}
+  },
+  "destinationFolder": "dist",
+  "files": {
+    "test.js": [
+      "tests/fixtures.js",
+      "tests/main.js"
+    ]
+  }
+}
