@@ -12,6 +12,10 @@
     "test.js": [
       "tests/fixtures.js",
       "tests/main.js"
+    ],
+    "test2.js": [
+      "tests/fixtures.js",
+      "tests/main.js"
     ]
   }
 }

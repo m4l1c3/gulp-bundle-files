@@ -1,4 +1,10 @@
-[
-  "src/css/test1.css",
-  "src/caa/test2.css"
-]
+{
+  "files": {
+    "src/js/test1.js": [
+      "something.js"
+    ],
+    "src/js/test2.js": [
+      "something2.js"
+    ]
+  }
+}

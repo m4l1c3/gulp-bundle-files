@@ -58,6 +58,18 @@ describe('gulp-bundle-files', function() {
 			isLastType.should.equal('function');
 		});
 
+		it('should pass, getName should return ', function() {
+			bundleTest.bundle.getName().should.equal(0);
+		});
+
+		it('should pass, isLast should return true', function() {
+			bundleTest.bundle.isLast().should.equal(true);
+		});
+
+		//it('should fail, isLast should return false', function() {
+		//	bundleTest.
+		//});
+
 		it('should throw, fixture with bad file', function() {
 			(function() {
 				fixture.get('bag-uglify');
@@ -68,7 +80,8 @@ describe('gulp-bundle-files', function() {
 
 		it('should throw, bundle checker doesn\'t work', function() {
 			(function() {
-				bundleChecker(fixture.get('bundles'), true);
+				var bundles = fixture.get('bundles');
+				bundleChecker(Object.keys(bundles.files), bundles.files, true);
 			}).should.throw(
 				new PluginError(config.name, 'Bundle check is not working')
 			);

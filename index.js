@@ -2,14 +2,14 @@
 
 var config = require('./package.json'),
 	gutil = require('gulp-util'),
-	gulpTaskFactory = require('./gulpTaskFactory'),
+	gulpTaskFactory = require('./gulpTaskFactory').gulpTaskFactory,
 	bundleCheck = require('./bundleCheck').BundleCheck,
-	PluginError = gutil.PluginError;
+	PluginError = gutil.PluginError,
+	Tasks = [];
 
 module.exports  = function(options) {
 
-	var bundles,
-		self = this;
+	var bundles;
 	options = options || {};
 
 	if(options.destinationFolder === undefined || options.destinationFolder.length < 1) {
@@ -21,17 +21,16 @@ module.exports  = function(options) {
 
 	bundles = Object.keys(options.files);
 
-
 	if (!bundles.length) {
 		throw new PluginError(config.name, 'No file input stored in options.files.');
 	} else {
 		//taskName from the current bundle, this ends up being the destination file's name
 
-		var validPackages = bundleCheck(bundles);
+		var validPackages = bundleCheck(bundles, options.files);
 		if (validPackages !== true) {
 			gutil.log('Files missing from bundles: ');
 			for(var i in validPackages) {
-				gutil.log(gutil.colors.red('ERROR ') + gutil.colors.gray('-- ') + validPackages[i].getName());
+				gutil.log(gutil.colors.gray('-- ' + validPackages[i].getName()));
 				gutil.beep();
 			}
 			throw new PluginError(config.name, 'Error creating bundle, bundles are missing files.');
@@ -45,11 +44,11 @@ module.exports  = function(options) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
-				self.bundles.push(
-					new gulpTaskFactory(taskName, options.files[taskName])
+				Tasks.push(
+					new gulpTaskFactory(taskName, options)
 				);
 			});
-			return self.bundles;
 		}
+		return Tasks;
 	}
 };

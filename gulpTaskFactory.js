@@ -26,17 +26,13 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 				.pipe(
 					gulpif(
 						options.concat.active && isJs,
-						function () {
-							return concat(gulpTask);
-						}
+						concat(gulpTask)
 					)
 				)
 				.pipe(
 					gulpif(
 						options.uglify.active && isJs,
-						function () {
-							return uglify(options.uglify.config);
-						}
+						uglify(options.uglify.config)
 					)
 				)
 				.pipe(gulp.dest(path.join(options.destinationFolder, 'js')));

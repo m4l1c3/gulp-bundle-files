@@ -6,14 +6,20 @@ var fs = require('fs'),
 	config = require('./package.json'),
 	PluginError = gutil.PluginError;
 
-var bundleCheck = function(bundles, test) {
+var bundleCheck = function(bundleNames, allBundles, test) {
 	var missing_bundle_items = [],
-		items = bundles,
+		items = bundleNames,
 		bundleIsValid = true;
 	for(var i in items) {
-		if (items.hasOwnProperty(i) && !fs.existsSync(path.join(__dirname, items[i]))) {
-			bundleIsValid = false;
-			missing_bundle_items.push(new Bundle(i, items));
+		if (items.hasOwnProperty(i)) {
+			for(var o in allBundles[items[i]]) {
+				if(allBundles[items[i]].hasOwnProperty(o)) {
+					if (!fs.existsSync(path.join(__dirname, allBundles[items[i]][o]))) {
+						bundleIsValid = false;
+						missing_bundle_items.push(new Bundle(o, allBundles[items[i]]));
+					}
+				}
+			}
 		}
 	}
 
