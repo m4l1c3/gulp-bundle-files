@@ -38,6 +38,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "istanbul": "^0.4.2",
+    "junk": "^1.0.2",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.0.0",
     "should": "^8.2.2",
