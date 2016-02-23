@@ -4,12 +4,21 @@ var config = require('./package.json'),
 	gutil = require('gulp-util'),
 	gulpTaskFactory = require('./gulpTaskFactory').gulpTaskFactory,
 	bundleCheck = require('./bundleCheck').BundleCheck,
-	PluginError = gutil.PluginError,
-	Tasks = [];
+	PluginError = gutil.PluginError;
 
 module.exports  = function(options) {
 
-	var bundles;
+	var bundles,
+		Tasks = [],
+		handleInvalidPackages = function (invalidPackages) {
+			gutil.log('Files missing from bundles: ');
+			for (var i in invalidPackages) {
+				gutil.log(gutil.colors.gray('-- ' + invalidPackages[i].getName()));
+				gutil.beep();
+			}
+			throw new PluginError(config.name, 'Error creating bundle, bundles are missing files.');
+		};
+
 	options = options || {};
 
 	if(options.destinationFolder === undefined || options.destinationFolder.length < 1) {
@@ -28,13 +37,7 @@ module.exports  = function(options) {
 
 		var validPackages = bundleCheck(bundles, options.files);
 		if (validPackages !== true) {
-			gutil.log('Files missing from bundles: ');
-			for(var i in validPackages) {
-				gutil.log(gutil.colors.gray('-- ' + validPackages[i].getName()));
-				gutil.beep();
-			}
-			throw new PluginError(config.name, 'Error creating bundle, bundles are missing files.');
-
+			handleInvalidPackages(validPackages);
 		} else {
 			bundles.forEach(function (taskName) {
 				if (taskName === '') {
