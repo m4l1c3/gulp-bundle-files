@@ -1,4 +1,8 @@
-before_script: 'npm install -g istanbul && npm install -g mocha'
+before_script:
+  - npm install -g istanbul
+  - npm install -g mocha
+  - npm install -g gulp
+
 script: 'make test-cov'
 after_success: 'make coveralls'
 
@@ -9,3 +13,12 @@ node_js:
   - "4"
   - "0.12"
   - "0.10"
+
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
