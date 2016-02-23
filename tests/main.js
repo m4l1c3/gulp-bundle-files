@@ -7,6 +7,7 @@ var bundle = require('../'),
 	config = require('../package.json'),
 	fixtures = require('./fixtures').fixtures,
 	gulpTaskFactory = require('../GulpTaskFactory').gulpTaskFactory,
+	junk = require('junk'),
 	BundleTest = function() {
 		var self = this,
 			Bundle = require('../Bundle').Bundle,
@@ -26,8 +27,12 @@ var bundle = require('../'),
 			throw new PluginError(config.name, 'Bundle test has failed missing isLast');
 		}
 	},
-	bundleTest = new BundleTest();
+	bundleTest = new BundleTest(),
+	fs = require('fs'),
+	config2 = require('../sample-options'),
+	path = require('path');
 	require('mocha');
+	bundle(config2);
 
 
 describe('gulp-bundle-files', function() {
@@ -65,10 +70,6 @@ describe('gulp-bundle-files', function() {
 		it('should pass, isLast should return true', function() {
 			bundleTest.bundle.isLast().should.equal(true);
 		});
-
-		//it('should fail, isLast should return false', function() {
-		//	bundleTest.
-		//});
 
 		it('should throw, fixture with bad file', function() {
 			(function() {
@@ -149,6 +150,23 @@ describe('gulp-bundle-files', function() {
 			}).should.throw(
 				new PluginError(config.name, 'No files inside named bundle')
 			);
+		});
+
+		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
+			var outputDirectory = fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+				if(err) {
+					throw err;
+				}
+				files = files.filter(junk.not);
+				if(files.length == 2) {
+					files.forEach(function(element, index) {
+						if(!fs.existsSync(path.join('../dist/', element))) {
+							return false;
+						}
+					});
+					done();
+				}
+			});
 		});
 	});
 });

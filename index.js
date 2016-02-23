@@ -30,6 +30,8 @@ module.exports  = function(options) {
 		throw new PluginError(config.name, 'File input in wrong format, please use an array or object.');
 	}
 
+	//setup an array of all the destination
+	//filenames to be used as the task/bundle name
 	bundles = Object.keys(options.files);
 
 	if (!bundles.length) {
