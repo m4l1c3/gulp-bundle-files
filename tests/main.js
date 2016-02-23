@@ -153,7 +153,7 @@ describe('gulp-bundle-files', function() {
 		});
 
 		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
-			var outputDirectory = fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+			fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
 				if(err) {
 					throw err;
 				}
