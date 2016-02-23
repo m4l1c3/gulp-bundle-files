@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     bundles = require('./sample-options.json');
 
 gulp.task('lint', function() {
-    return gulp.src('**/*.js', '!node_modules/**')
+    return gulp.src(['**/*.js', '!node_modules/**', '!coverage/**'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -14,4 +14,4 @@ gulp.task('bundle', function() {
     return gulpBundleFiles(bundles);
 });
 
-gulp.task('default', ['bundle']);
+gulp.task('default', ['lint', 'bundle']);
