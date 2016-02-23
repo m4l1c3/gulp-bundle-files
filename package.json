@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp module to concatenate configured bundles",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "keywords": [
     "gulp",
     "bundle",
-    "less",
+    "concat",
     "javascript"
   ],
   "author": "m4l1c3",
