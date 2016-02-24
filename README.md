@@ -43,18 +43,24 @@ gulp.task('scripts', function() {
 
 # Options
 
-### Concat
+## Concat
 Used to specify whether or not concat is active along with the configuration for concat, the config's format should match the options outlined here: https://github.com/contra/gulp-concat
 
-### Uglify
+## Uglify
 Used to specify whether or not uglify is active along with the configuration for uglify, the config's format should match the options outlined here: https://github.com/terinjokes/gulp-uglify
 
-### Destination Folder
+## Destination Folder
 This option specifies the location where your completed bundles are going to be written to, it's relative to the current working directory, in most cases this would be your project's directory
 
-### Files
+## Files
 This option is used to configure what bundles you're going to be creating with Gulp.  These end up being key/value paired object literals whose value is an array of files the bundle will contain.
 In this case the key will be the file containing all of the value's parts, or the built file.
+
+#Contributing
+Please see [Contributing](https://github.com/m4l1c3/gulp-bundle-files/blob/master/CONTRIBUTING.md) before coding.
+
+#Issues
+Please file any issues you might find here on github.
 
 
 [downloads-image]: https://img.shields.io/npm/dm/gulp-bundle-files.svg
