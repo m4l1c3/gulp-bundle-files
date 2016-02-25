@@ -7,9 +7,8 @@ var config = require('./package.json'),
 	PluginError = gutil.PluginError;
 
 module.exports  = function(options) {
-
 	var bundles,
-		Tasks = [],
+		gulp = require('gulp'),
 		handleInvalidPackages = function (invalidPackages) {
 			gutil.log('Files missing from bundles: ');
 			for (var i in invalidPackages) {
@@ -43,6 +42,7 @@ module.exports  = function(options) {
 		if (validPackages !== true) {
 			handleInvalidPackages(validPackages);
 		} else {
+
 			//taskName from the current bundle, this ends up being the destination file's name
 			bundles.forEach(function (taskName) {
 				if (taskName === '') {
@@ -52,11 +52,9 @@ module.exports  = function(options) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
-				Tasks.push(
-					new gulpTaskFactory(taskName, options)
-				);
+				gulpTaskFactory(taskName, options);
+				gulp.seq.push(taskName);
 			});
 		}
-		return Tasks;
 	}
 };
