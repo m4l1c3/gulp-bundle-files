@@ -4,7 +4,8 @@ logs
 npm-debug.log*
 
 .DS_Store
-dist
+dist/js/test.js
+dist/js/test2.js
 # Runtime data
 pids
 *.pid
