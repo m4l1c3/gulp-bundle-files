@@ -7,6 +7,7 @@ var bundle = require('../'),
 	config = require('../package.json'),
 	fixtures = require('./fixtures').fixtures,
 	gulpTaskFactory = require('../GulpTaskFactory').gulpTaskFactory,
+	cp = require('child_process'),
 	junk = require('junk'),
 	BundleTest = function() {
 		var self = this,
@@ -153,16 +154,21 @@ describe('gulp-bundle-files', function() {
 		});
 
 		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
-			fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
-				if(err) {
-					throw err;
-				}
-				files = files.filter(junk.not);
+			this.timeout(15000);
+			cp.exec('gulp', function(error, stdout, stderror) {
+				if(error == null) {
+					fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+						if(err) {
+							throw err;
+						}
+						files = files.filter(junk.not);
 
-				if(files.length) {
-					files.forEach(function(element, index) {
-						if(!fs.existsSync(path.join('../dist/', element))) {
-							return false;
+						if(files.length == 3) {
+							files.forEach(function(element, index) {
+								if(!fs.existsSync(path.join('../dist/', element))) {
+									return false;
+								}
+							});
 						}
 					});
 				}
