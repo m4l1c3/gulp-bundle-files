@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/m4l1c3/gulp-bundle-files#readme",
   "dependencies": {
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
     "gulp-if": "^2.0.0",
     "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7"
