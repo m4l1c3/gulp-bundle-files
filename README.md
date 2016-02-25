@@ -3,16 +3,21 @@
 
 A wrapper for gulp-concat that performs additional runtime configuration checks along with creating a separate task/stream for all the pieces you're attempting to build.  Utilizing a JSON based configuration, the module will combine/concat and uglify bundles of javascript or css into user defined files for deployment.
 
+## How it works
+By defining your "bundles" in a properly formatted JSON configuration file and passing your config to gulp-bundle-files you'll be dynamically creating a task for every bundle.  Each of these tasks is appended into gulp's run sequence.  Basically the task you define for gulp-bundle-files adds a gulp.task for every bundle defined in your application's configuration, then all the dynamic tasks get run once the plugin finishes.  Each of these tasks will be added into gulps sequence in the order your 'default' task defines, using the plugin will just insert these tasks wherever it gets called in your build order.
+
 ## Usage
 
 ```js
-var gulpBundleFiles = require('gulp-bundle=files'),
-    options = require('path/to/your/config.json');
+var gulp = require('gulp'),
+    gulpBundleFiles = require('./index.js'),
+    bundles = require('./sample-options.json');
 
-gulp.task('scripts', function() {
-  return gulp.src('')
-    .pipe(gulpBundleFiles(options));
+gulp.task('bundle', function() {
+    gulpBundleFiles(bundles);
 });
+
+gulp.task('default', ['bundle']);
 ```
 
 ## Configuration Syntax
