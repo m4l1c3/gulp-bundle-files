@@ -56,9 +56,27 @@ This option specifies the location where your completed bundles are going to be 
 This option is used to configure what bundles you're going to be creating with Gulp.  These end up being key/value paired object literals whose value is an array of files the bundle will contain.
 In this case the key will be the file containing all of the value's parts, or the built file.
 
-#Contributing
-Please see [Contributing](https://github.com/m4l1c3/gulp-bundle-files/blob/master/CONTRIBUTING.md) before coding.
+# Issue guidelines
 
+This repository's [CONTRIBUTING.md](CONTRIBUTING.md) provides a generic set of
+guidelines for developers to adapt and include in their own GitHub
+repositories, thereby taking advantage of [GitHub's integration with
+contributing guidelines](https://github.com/blog/1184-contributing-guidelines).
+
+The section below can be included in your README to improve the visibility of
+your contribution guidelines.
+
+If you think this guide can be improved, please let me know.
+
+
+## Contributing to this project
+
+Anyone and everyone is welcome to contribute. Please take a moment to
+review the [guidelines for contributing](CONTRIBUTING.md).
+
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
 #Issues
 Please file any issues you might find here on github.
 
