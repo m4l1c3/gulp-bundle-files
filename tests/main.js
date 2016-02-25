@@ -158,6 +158,7 @@ describe('gulp-bundle-files', function() {
 					throw err;
 				}
 				files = files.filter(junk.not);
+				gutil.log(gutil.colors.red(files.length));
 				if(files.length == 3) {
 					files.forEach(function(element, index) {
 						if(!fs.existsSync(path.join('../dist/', element))) {
