@@ -11,7 +11,6 @@ var concat = require('gulp-concat'),
 
 exports.gulpTaskFactory = function(gulpTask, options) {
 	var task = function (gulpTask, options) {
-		var isJs = gulpTask.indexOf('.js') > 0;
 
 		if (options.concat !== undefined && options.concat.active && options.concat.config === undefined) {
 			throw new PluginError(config.name, 'No concat settings');
@@ -22,20 +21,22 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 		}
 
 		try {
-			return gulp.src(options.files[gulpTask])
-				.pipe(
-					gulpif(
-						options.concat.active && isJs,
-						concat(gulpTask)
+			gulp.task(gulpTask, function() {
+				gulp.src(options.files[gulpTask])
+					.pipe(
+						gulpif(
+							options.concat.active,
+							concat(gulpTask)
+						)
 					)
-				)
-				.pipe(
-					gulpif(
-						options.uglify.active && isJs,
-						uglify(options.uglify.config)
+					.pipe(
+						gulpif(
+							options.uglify.active,
+							uglify(options.uglify.config)
+						)
 					)
-				)
-				.pipe(gulp.dest(path.join(options.destinationFolder, 'js')));
+					.pipe(gulp.dest(path.join(options.destinationFolder, 'js')));
+			});
 		} catch (ex) {
 			gutil.log(gutil.colors.red('Error creating bundle: ' + gulpTask));
 			throw new PluginError(config.name, 'Error creating bundle.');
