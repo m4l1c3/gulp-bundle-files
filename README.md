@@ -10,7 +10,7 @@ By defining your "bundles" in a properly formatted JSON configuration file and p
 
 ```js
 var gulp = require('gulp'),
-    gulpBundleFiles = require('./index.js'),
+    gulpBundleFiles = require('gulp-bundle-files'),
     bundles = require('./sample-options.json');
 
 gulp.task('bundle', function() {
