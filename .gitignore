@@ -6,6 +6,7 @@ npm-debug.log*
 .DS_Store
 dist/js/test.js
 dist/js/test2.js
+dist/css/test.css
 # Runtime data
 pids
 *.pid
