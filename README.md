@@ -32,15 +32,30 @@ gulp.task('default', ['bundle']);
     "active": false,
     "config": {}
   },
+  "cssnano": {
+    "active": true,
+    "config": {}
+  },
+  "autoprefixer": {
+    "active": true,
+    "config": {
+      "browsers": ["last 2 versions"],
+      "cascade": false
+    }
+  },
   "destinationFolder": "dist",
   "files": {
-    "test.js": [
+    "js/test.js": [
       "tests/fixtures.js",
       "tests/main.js"
     ],
-    "test2.js": [
+    "js/test2.js": [
       "tests/fixtures.js",
       "tests/main.js"
+    ],
+    "css/test.css": [
+      "tests/css/test.css",
+      "tests/css/test2.css"
     ]
   }
 }
@@ -53,6 +68,12 @@ Used to specify whether or not concat is active along with the configuration for
 
 ## Uglify
 Used to specify whether or not uglify is active along with the configuration for uglify, the config's format should match the options outlined here: https://github.com/terinjokes/gulp-uglify
+
+## Cssnano
+Used to specify whether or not cssnano is active along with the configuration for cssnano, the config's format should match the options outlined here: https://github.com/ben-eb/gulp-cssnano
+
+## Autoprefixer
+Used to specify whether or not autoprefixer is active along with the configuration for autoprefixer, the config's format should match the options outlined here: https://github.com/sindresorhus/gulp-autoprefixer
 
 ## Destination Folder
 This option specifies the location where your completed bundles are going to be written to, it's relative to the current working directory, in most cases this would be your project's directory
