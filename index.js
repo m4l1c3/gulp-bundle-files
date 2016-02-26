@@ -33,7 +33,7 @@ module.exports  = function(options, test) {
 
 		//if no valid packages, handle showing user's the errors
 		if (validPackages !== true) {
-			HandleInvalidPackages(validPackages);
+			HandleInvalidPackages(validPackages, test);
 		} else {
 
 			//taskName from the current bundle, this ends up being the destination file's name

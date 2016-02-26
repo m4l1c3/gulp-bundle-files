@@ -1,4 +1,5 @@
 var gutil = require('gulp-util'),
+	config = require('./package.json'),
 	PluginError = gutil.PluginError;
 
 var HandleInvalidPackages = function (invalidPackages, test) {
