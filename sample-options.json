@@ -7,15 +7,30 @@
     "active": false,
     "config": {}
   },
+  "cssnano": {
+    "active": true,
+    "config": {}
+  },
+  "autoprefixer": {
+    "active": true,
+    "config": {
+      "browsers": ["last 2 versions"],
+      "cascade": false
+    }
+  },
   "destinationFolder": "dist",
   "files": {
-    "test.js": [
+    "js/test.js": [
       "tests/fixtures.js",
       "tests/main.js"
     ],
-    "test2.js": [
+    "js/test2.js": [
       "tests/fixtures.js",
       "tests/main.js"
+    ],
+    "css/test.css": [
+      "tests/css/test.css",
+      "tests/css/test2.css"
     ]
   }
 }
