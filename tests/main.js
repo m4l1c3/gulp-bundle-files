@@ -131,7 +131,7 @@ describe('gulp-bundle-files', function() {
 
 		it('should throw, when bundle is missing files', function() {
 			(function() {
-				bundle(fixture.get('full-options'));
+				bundle(fixture.get('full-options'), true);
 			}).should.throw(
 				new PluginError(config.name, 'Error creating bundle, bundles are missing files.')
 			);
@@ -175,6 +175,7 @@ describe('gulp-bundle-files', function() {
 				done();
 			});
 		});
+
 
 		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
 			this.timeout(15000);
