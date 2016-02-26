@@ -2,23 +2,16 @@
 
 var config = require('./package.json'),
 	gutil = require('gulp-util'),
-	gulpTaskFactory = require('./GulpTaskFactory').gulpTaskFactory,
-	bundleCheck = require('./BundleCheck').BundleCheck,
-	PluginError = gutil.PluginError;
+	GulpTaskFactory = require('./GulpTaskFactory').gulpTaskFactory,
+	BundleCheck = require('./BundleCheck').BundleCheck,
+	PluginError = gutil.PluginError,
+	HandleInvalidPackages = require('./InvalidPackage').HandleInvalidPackages;
 
-module.exports  = function(options) {
+module.exports  = function(options, test) {
+	test = test || false;
 	var bundles,
-		gulp = require('gulp'),
-		handleInvalidPackages = function (invalidPackages) {
-			gutil.log('Files missing from bundles: ');
-			for (var i in invalidPackages) {
-				if(invalidPackages.hasOwnProperty(i)) {
-					gutil.log(gutil.colors.gray('-- ' + invalidPackages[i].getName()));
-					gutil.beep();
-				}
-			}
-			throw new PluginError(config.name, 'Error creating bundle, bundles are missing files.');
-		};
+		gulp = require('gulp');
+
 
 	options = options || {};
 
@@ -36,11 +29,11 @@ module.exports  = function(options) {
 	if (!bundles.length) {
 		throw new PluginError(config.name, 'No file input stored in options.files.');
 	} else {
-		var validPackages = bundleCheck(bundles, options.files);
+		var validPackages = BundleCheck(bundles, options.files);
 
 		//if no valid packages, handle showing user's the errors
 		if (validPackages !== true) {
-			handleInvalidPackages(validPackages);
+			HandleInvalidPackages(validPackages);
 		} else {
 
 			//taskName from the current bundle, this ends up being the destination file's name
@@ -52,7 +45,7 @@ module.exports  = function(options) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
-				gulpTaskFactory(taskName, options);
+				GulpTaskFactory(taskName, options);
 				gulp.seq.push(taskName);
 			});
 		}

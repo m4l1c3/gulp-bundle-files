@@ -10,6 +10,7 @@ var bundleCheck = function(bundleNames, allBundles, test) {
 	var missing_bundle_items = [],
 		items = bundleNames,
 		bundleIsValid = true;
+
 	for(var i in items) {
 		if (items.hasOwnProperty(i)) {
 			for(var o in allBundles[items[i]]) {

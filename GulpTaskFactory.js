@@ -34,7 +34,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 					)
 					.pipe(
 						gulpif(
-							options.uglify.active || isJs,
+						 	options.uglify.active || isJs,
 							uglify(options.uglify.config)
 						)
 					)
