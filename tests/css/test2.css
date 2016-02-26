@@ -1,0 +1,5 @@
+p {
+    margin: 0 0 10px 0;
+    background: linear-gradient(to bottom, #000, #fff);
+    transition: transform 1s;
+}

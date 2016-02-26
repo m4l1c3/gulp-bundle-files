@@ -175,5 +175,28 @@ describe('gulp-bundle-files', function() {
 				done();
 			});
 		});
+
+		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
+			this.timeout(15000);
+			cp.exec('gulp', function(error, stdout, stderror) {
+				if(error == null) {
+					fs.readdir(path.join(__dirname, '/../dist/css'), function(err, files) {
+						if(err) {
+							throw err;
+						}
+						files = files.filter(junk.not);
+
+						if(files.length == 2) {
+							files.forEach(function(element, index) {
+								if(!fs.existsSync(path.join('../dist/', element))) {
+									return false;
+								}
+							});
+						}
+					});
+				}
+				done();
+			});
+		});
 	});
 });
