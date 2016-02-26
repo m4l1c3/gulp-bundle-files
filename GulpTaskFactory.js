@@ -28,7 +28,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 				gulp.src(options.files[gulpTask])
 					.pipe(
 						gulpif(
-							options.concat.active && isJs,
+							options.concat.active,
 							concat(gulpTask)
 						)
 					)
@@ -50,10 +50,10 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 							autoprefixer(options.autoprefixer.config)
 						)
 					)
-					.pipe(gulp.dest(path.join(options.destinationFolder, 'js')));
+					.pipe(gulp.dest(options.destinationFolder));
 			});
 		} catch (ex) {
-			gutil.log(gutil.colors.red('Error creating bundle: ' + gulpTask));
+			gutil.log(gutil.colors.red('Error creating bundle: ' + gulpTask + '\n\t' + ex.message));
 			throw new PluginError(config.name, 'Error creating bundle.');
 		}
 	};

@@ -15,7 +15,15 @@
     "gulp",
     "bundle",
     "concat",
-    "javascript"
+    "javascript",
+    "optimization",
+    "css",
+    "uglify",
+    "minify",
+    "gulp-concat",
+    "postcss",
+    "gulp-cssnano",
+    "gulp-autoprefixer"
   ],
   "author": "m4l1c3",
   "license": "MIT",
