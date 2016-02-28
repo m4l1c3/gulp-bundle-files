@@ -21,9 +21,11 @@ gulp.task('default', ['bundle']);
 ```
 
 ## Configuration Syntax
+The plugin assumes your task for bundling is named "bundle" if you have a different name, just specify it in the config.  This prevents the dynamic tasks from being called in the wrong contexts when using gulp watch.
 
 ```json
 {
+  "parentTaskName": "bundle",
   "concat": {
     "active": true,
     "config": {}
