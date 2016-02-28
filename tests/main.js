@@ -155,7 +155,7 @@ describe('gulp-bundle-files', function() {
 
 		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
 			this.timeout(15000);
-			cp.exec('gulp', function(error, stdout, stderror) {
+			cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
 						if(err) {
@@ -176,10 +176,9 @@ describe('gulp-bundle-files', function() {
 			});
 		});
 
-
 		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
 			this.timeout(15000);
-			cp.exec('gulp', function(error, stdout, stderror) {
+			cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/css'), function(err, files) {
 						if(err) {
