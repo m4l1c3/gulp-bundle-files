@@ -1,4 +1,5 @@
 {
+  "parentTaskName": "bundle",
   "concat": {
     "active": true,
     "config": {}
