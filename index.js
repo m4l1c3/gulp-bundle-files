@@ -9,11 +9,13 @@ var config = require('./package.json'),
 
 module.exports  = function(options, test) {
 	test = test || false;
+
 	var bundles,
 		gulp = require('gulp');
 
 
 	options = options || {};
+	options.parentTaskName = options.parentTaskName || 'bundle';
 
 	if(options.destinationFolder === undefined || options.destinationFolder.length < 1) {
 		throw new PluginError(config.name, 'Missing destinationFolder gulp-bundle-files');
@@ -45,8 +47,10 @@ module.exports  = function(options, test) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
-				GulpTaskFactory(taskName, options);
-				gulp.seq.push(taskName);
+				if(gulp.seq.indexOf(options.parentTaskName) > -1) {
+					GulpTaskFactory(taskName, options);
+					gulp.seq.push(taskName);
+				}
 			});
 		}
 	}
