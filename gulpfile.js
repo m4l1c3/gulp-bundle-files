@@ -16,7 +16,7 @@ gulp.task('mocha', ['lint'], function() {
         .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('bundle', ['lint'], function() {
+gulp.task('bundle', function() {
     gulpBundleFiles(bundles);
 });
 
@@ -24,4 +24,4 @@ gulp.task('watch', function() {
     gulp.watch(['tests/fixtures.js', 'tests/main.js', '*.js'], ['mocha']);
 });
 
-gulp.task('default', ['lint', 'bundle']);
+gulp.task('default', ['mocha']);
