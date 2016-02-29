@@ -30,11 +30,8 @@ var bundle = require('../'),
 	},
 	bundleTest = new BundleTest(),
 	fs = require('fs'),
-	config2 = require('../sample-options'),
 	path = require('path');
 	require('mocha');
-	bundle(config2);
-
 
 describe('gulp-bundle-files', function() {
 
