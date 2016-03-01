@@ -8,6 +8,7 @@ var HandleInvalidPackages = function (invalidPackages, test) {
 	for (var i in invalidPackages) {
 		if (invalidPackages.hasOwnProperty(i)) {
 			gutil.log(gutil.colors.gray('-- ' + invalidPackages[i].getName()));
+			/* istanbul ignore if */
 			if(!test) {
 				gutil.beep();
 			}

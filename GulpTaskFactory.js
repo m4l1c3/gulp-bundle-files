@@ -23,8 +23,8 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			throw new PluginError(config.name, 'No uglify settings');
 		}
 
-		try {
-			gulp.task(gulpTask, function() {
+		/* istanbul ignore next */
+		return gulp.task(gulpTask, function() {
 				gulp.src(options.files[gulpTask])
 					.pipe(
 						gulpif(
@@ -34,7 +34,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 					)
 					.pipe(
 						gulpif(
-						 	options.uglify.active || isJs,
+						    options.uglify.active || isJs,
 							uglify(options.uglify.config)
 						)
 					)
@@ -51,11 +51,8 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 						)
 					)
 					.pipe(gulp.dest(options.destinationFolder));
-			});
-		} catch (ex) {
-			gutil.log(gutil.colors.red('Error creating bundle: ' + gulpTask + '\n\t' + ex.message));
-			throw new PluginError(config.name, 'Error creating bundle.');
-		}
+			}
+		);
 	};
 	return task(gulpTask, options);
 };
