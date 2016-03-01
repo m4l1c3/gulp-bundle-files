@@ -37,7 +37,6 @@ module.exports  = function(options, test) {
 		if (validPackages !== true) {
 			HandleInvalidPackages(validPackages, test);
 		} else {
-
 			//taskName from the current bundle, this ends up being the destination file's name
 			bundles.forEach(function (taskName) {
 				if (taskName === '') {
@@ -47,6 +46,8 @@ module.exports  = function(options, test) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
+				//parent task has been run, inject task into gulps task
+				/* istanbul ignore if */
 				if(gulp.seq.indexOf(options.parentTaskName) > -1) {
 					GulpTaskFactory(taskName, options);
 					gulp.seq.push(taskName);
