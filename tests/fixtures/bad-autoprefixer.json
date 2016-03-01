@@ -1,6 +1,7 @@
 {
   "concat": {
-    "active": true
+    "active": true,
+    "config": {}
   },
   "uglify": {
     "active": true,
@@ -10,10 +11,12 @@
     "active": true
   },
   "less": {
-    "active": true
+    "active": true,
+    "config": {}
   },
   "sass": {
-    "active": true
+    "active": true,
+    "config": {}
   },
   "destinationFolder": "dist",
   "files": {

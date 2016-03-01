@@ -23,6 +23,18 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			throw new PluginError(config.name, 'No uglify settings');
 		}
 
+		if (options.autoprefixer !== undefined && options.autoprefixer.active && options.autoprefixer.config === undefined) {
+			throw new PluginError(config.name, 'No autoprefixer settings')
+		}
+
+		if (options.less !== undefined && options.less.active && options.less.config === undefined) {
+			throw new PluginError(config.name, 'No less settings')
+		}
+
+		if (options.sass !== undefined && options.sass.active && options.sass.config === undefined) {
+			throw new PluginError(config.name, 'No sass settings')
+		}
+
 		/* istanbul ignore next */
 		return gulp.task(gulpTask, function() {
 				gulp.src(options.files[gulpTask])

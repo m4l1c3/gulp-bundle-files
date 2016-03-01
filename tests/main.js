@@ -47,6 +47,30 @@ describe('gulp-bundle-files', function() {
 			);
 		});
 
+		it('should throw, No autoprefixer settings', function() {
+			(function() {
+				gulpTaskFactory('autoprefixer', fixture.get('bad-autoprefixer'));
+			}).should.throw(
+				new PluginError(config.name, 'No autoprefixer settings')
+			);
+		});
+
+		it('should throw, No less settings', function() {
+			(function() {
+				gulpTaskFactory('less', fixture.get('bad-less'));
+			}).should.throw(
+				new PluginError(config.name, 'No less settings')
+			);
+		});
+
+		it('should throw, No sass settings', function() {
+			(function() {
+				gulpTaskFactory('sass', fixture.get('bad-sass'));
+			}).should.throw(
+				new PluginError(config.name, 'No sass settings')
+			);
+		});
+
 		it('should pass, upon creation bundleTest will return true if all is well', function() {
 			bundleTest.isValid.should.equal(true);
 		});
