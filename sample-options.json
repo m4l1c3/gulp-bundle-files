@@ -5,7 +5,7 @@
     "config": {}
   },
   "uglify": {
-    "active": false,
+    "active": true,
     "config": {}
   },
   "cssnano": {
@@ -17,6 +17,18 @@
     "config": {
       "browsers": ["last 2 versions"],
       "cascade": false
+    }
+  },
+  "less": {
+    "active": true,
+    "config": {
+
+    }
+  },
+  "sass": {
+    "active": true,
+    "config": {
+
     }
   },
   "destinationFolder": "dist",

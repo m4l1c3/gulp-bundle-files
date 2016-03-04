@@ -8,7 +8,11 @@ var concat = require('gulp-concat'),
 	config = require('./package.json'),
 	gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'),
+    less = require('gulp-less'),
+    sass = require('gulp-sass'),
 	cssnano = require('gulp-cssnano'),
+    argv = require('yargs').argv,
+    isProductionBuild = argv.mode === 'production',
 	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
@@ -46,13 +50,25 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 					)
 					.pipe(
 						gulpif(
-						    options.uglify.active || isJs,
+						    options.uglify.active && isJs && (isProductionBuild),
 							uglify(options.uglify.config)
 						)
 					)
+                    .pipe(
+                        gulpif(
+                            options.less.active && !isJs && gulpTask.indexOf('.less') > 0,
+                            less(options.less.config)
+                        )
+                    )
+                    .pipe(
+                        gulpif(
+                            options.sass.active && !isJs && gulpTask.indexOf('.scss') > 0,
+                            sass(options.sass.config)
+                        )
+                    )
 					.pipe(
 						gulpif(
-							options.cssnano.active && !isJs,
+							options.cssnano.active && !isJs && (isProductionBuild),
 							cssnano(options.cssnano.config)
 						)
 					)
