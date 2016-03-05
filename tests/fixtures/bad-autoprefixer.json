@@ -10,14 +10,6 @@
   "autoprefixer": {
     "active": true
   },
-  "less": {
-    "active": true,
-    "config": {}
-  },
-  "sass": {
-    "active": true,
-    "config": {}
-  },
   "destinationFolder": "dist",
   "files": {
     "css/app.css": [

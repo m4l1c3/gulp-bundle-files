@@ -44,6 +44,12 @@
     "css/test.css": [
       "tests/css/test.css",
       "tests/css/test2.css"
+    ],
+    "css/test2.css": [
+        "tests/less/test.less"
+    ],
+    "css/test3.css": [
+        "tests/sass/test.scss"
     ]
   }
 }

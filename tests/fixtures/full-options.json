@@ -2,9 +2,6 @@
 	"concat": {
 		"active": true
 	},
-	"less": {
-		"active": true
-	},
 	"uglify": {
 		"active": false
 	},
