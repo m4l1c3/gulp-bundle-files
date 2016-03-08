@@ -17,7 +17,9 @@ gulp.task('mocha', ['lint'], function() {
 });
 
 gulp.task('bundle', function() {
-    gulpBundleFiles(bundles);
+    return gulp.src(bundles)
+        .pipe(gulpBundleFiles(bundles))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', function() {

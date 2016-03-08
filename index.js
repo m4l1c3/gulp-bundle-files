@@ -5,14 +5,20 @@ var config = require('./package.json'),
 	GulpTaskFactory = require('./GulpTaskFactory').gulpTaskFactory,
 	BundleCheck = require('./BundleCheck').BundleCheck,
 	PluginError = gutil.PluginError,
+	through = require('through2'),
 	HandleInvalidPackages = require('./InvalidPackage').HandleInvalidPackages;
 
-module.exports  = function(options, test) {
+module.exports = function(options, test) {
 	test = test || false;
 
 	var bundles,
 		gulp = require('gulp');
 
+	function prefixStream(prefixText) {
+		var stream = through();
+		stream.write(prefixText);
+		return stream;
+	}
 
 	options = options || {};
 	options.parentTaskName = options.parentTaskName || 'bundle';
@@ -31,13 +37,13 @@ module.exports  = function(options, test) {
 	if (!bundles.length) {
 		throw new PluginError(config.name, 'No file input stored in options.files.');
 	} else {
-		var validPackages = BundleCheck(bundles, options.files);
+		var validPackages = BundleCheck(bundles, options.files),
+			option = new Buffer(JSON.stringify(options));
 
 		//if no valid packages, handle showing user's the errors
 		if (validPackages !== true) {
 			HandleInvalidPackages(validPackages, test);
 		} else {
-			//taskName from the current bundle, this ends up being the destination file's name
 			bundles.forEach(function (taskName) {
 				if (taskName === '') {
 					throw new PluginError(config.name, 'Error creating bundle: no bundle name');
@@ -53,6 +59,23 @@ module.exports  = function(options, test) {
 					gulp.seq.push(taskName);
 				}
 			});
+			//return through.obj(function(file, enc, cb) {
+			//	if(file.isNull()) {
+			//		return cb(null, file);
+			//	}
+			//
+			//	if(file.isBuffer()) {
+			//		file.contents = Buffer.concat([options.files, file.contents]);
+			//	}
+			//
+			//	if(file.isStream()) {
+			//		file.contents = files.contents.pipe(prefixStream(options));
+			//	}
+			//
+			//	cb(null, file);
+			//});
+			//taskName from the current bundle, this ends up being the destination file's name
+
 		}
 	}
 };
