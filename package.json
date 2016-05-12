@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.4.0",
+  "version": "1.17.1001",
   "description": "Gulp module to concatenate configured bundles",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,8 @@
     "gulp-cssnano": "^2.1.1",
     "gulp-if": "^2.0.0",
     "gulp-uglify": "^1.5.2",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "yargs": "^4.7.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.6",

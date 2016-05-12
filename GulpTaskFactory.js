@@ -8,7 +8,9 @@ var concat = require('gulp-concat'),
 	config = require('./package.json'),
 	gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'),
+    argv = require('yargs').argv,
 	cssnano = require('gulp-cssnano'),
+    isProductionBuild = argv.mode === 'production',
 	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
@@ -34,7 +36,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 					)
 					.pipe(
 						gulpif(
-						    options.uglify.active || isJs,
+						    options.uglify.active && isJs && isProductionBuild,
 							uglify(options.uglify.config)
 						)
 					)
