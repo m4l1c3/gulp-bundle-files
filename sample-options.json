@@ -5,7 +5,6 @@
     "config": {}
   },
   "uglify": {
-    "active": false,
     "config": {}
   },
   "cssnano": {

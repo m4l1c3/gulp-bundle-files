@@ -8,9 +8,7 @@ var concat = require('gulp-concat'),
 	config = require('./package.json'),
 	gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer'),
-    argv = require('yargs').argv,
 	cssnano = require('gulp-cssnano'),
-    isProductionBuild = argv.mode === 'production',
 	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
@@ -21,7 +19,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			throw new PluginError(config.name, 'No concat settings');
 		}
 
-		if (options.uglify !== undefined && options.uglify.active && options.uglify.config === undefined) {
+		if (options.uglify !== undefined && options.uglify.config === undefined) {
 			throw new PluginError(config.name, 'No uglify settings');
 		}
 
@@ -36,7 +34,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 					)
 					.pipe(
 						gulpif(
-						    options.uglify.active && isJs && isProductionBuild,
+						    isJs && options.isProductionBuild,
 							uglify(options.uglify.config)
 						)
 					)

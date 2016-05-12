@@ -5,6 +5,8 @@ var config = require('./package.json'),
 	GulpTaskFactory = require('./GulpTaskFactory').gulpTaskFactory,
 	BundleCheck = require('./BundleCheck').BundleCheck,
 	PluginError = gutil.PluginError,
+    argv = require('yargs').argv,
+    isProductionBuild = argv.mode === 'production',
 	HandleInvalidPackages = require('./InvalidPackage').HandleInvalidPackages;
 
 module.exports  = function(options, test) {
@@ -49,7 +51,8 @@ module.exports  = function(options, test) {
 				//parent task has been run, inject task into gulps task
 				/* istanbul ignore if */
 				if(gulp.seq.indexOf(options.parentTaskName) > -1) {
-					GulpTaskFactory(taskName, options);
+                    options.isProductionBuild = (isProductionBuild) ? true : false;
+                    GulpTaskFactory(taskName, options);
 					gulp.seq.push(taskName);
 				}
 			});

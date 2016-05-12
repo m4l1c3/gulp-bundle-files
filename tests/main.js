@@ -173,6 +173,29 @@ describe('gulp-bundle-files', function() {
 			});
 		});
 
+        it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
+            this.timeout(15000);
+            cp.exec('gulp bundle --mode production', function(error, stdout, stderror) {
+                if(error == null) {
+                    fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+                        if(err) {
+                            throw err;
+                        }
+                        files = files.filter(junk.not);
+
+                        if(files.length == 3) {
+                            files.forEach(function(element, index) {
+                                if(!fs.existsSync(path.join('../dist/', element))) {
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                }
+                done();
+            });
+        });
+
 		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
 			this.timeout(15000);
 			cp.exec('gulp bundle', function(error, stdout, stderror) {
