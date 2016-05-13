@@ -7,8 +7,9 @@ var concat = require('gulp-concat'),
 	path = require('path'),
 	config = require('./package.json'),
 	gulp = require('gulp'),
+    cssnano = require('gulp-cssnano'),
 	autoprefixer = require('gulp-autoprefixer'),
-	cssnano = require('gulp-cssnano'),
+    sourcemaps = require('gulp-sourcemaps'),
 	PluginError = gutil.PluginError;
 
 exports.gulpTaskFactory = function(gulpTask, options) {
@@ -26,28 +27,40 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 		/* istanbul ignore next */
 		return gulp.task(gulpTask, function() {
 				gulp.src(options.files[gulpTask])
-					.pipe(
+                    .pipe(
+                        gulpif(
+                            !options.isProductionBuild && options.sourcemap !== undefined && options.sourcemap.active,
+                            sourcemaps.init()
+                        )
+                    )
+                    .pipe(
 						gulpif(
 							options.concat.active,
 							concat(gulpTask)
 						)
 					)
+                    .pipe(
+                        gulpif(
+                            options.cssnano.active && !isJs,
+                            cssnano(options.cssnano.config)
+                        )
+                    )
+                    .pipe(
+                        gulpif(
+                            options.autoprefixer.active && !isJs,
+                            autoprefixer(options.autoprefixer.config)
+                        )
+                    )
+                    .pipe(
+                        gulpif(
+                            !options.isProductionBuild && options.sourcemap !== undefined && options.sourcemap.active,
+                            sourcemaps.write()
+                        )
+                    )
 					.pipe(
 						gulpif(
 						    isJs && options.isProductionBuild,
 							uglify(options.uglify.config)
-						)
-					)
-					.pipe(
-						gulpif(
-							options.cssnano.active && !isJs,
-							cssnano(options.cssnano.config)
-						)
-					)
-					.pipe(
-						gulpif(
-							options.autoprefixer.active && !isJs,
-							autoprefixer(options.autoprefixer.config)
 						)
 					)
 					.pipe(gulp.dest(options.destinationFolder));

@@ -18,6 +18,10 @@
       "cascade": false
     }
   },
+  "sourcemap": {
+    "active": true,
+    "config": {}
+  },
   "destinationFolder": "dist",
   "files": {
     "js/test.js": [

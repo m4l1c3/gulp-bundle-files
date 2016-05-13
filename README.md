@@ -34,16 +34,9 @@ The plugin assumes your task for bundling is named "bundle" if you have a differ
     "active": false,
     "config": {}
   },
-  "cssnano": {
+  "sourcemap": {
     "active": true,
     "config": {}
-  },
-  "autoprefixer": {
-    "active": true,
-    "config": {
-      "browsers": ["last 2 versions"],
-      "cascade": false
-    }
   },
   "destinationFolder": "dist",
   "files": {
@@ -76,6 +69,9 @@ Used to specify whether or not cssnano is active along with the configuration fo
 
 ## Autoprefixer
 Used to specify whether or not autoprefixer is active along with the configuration for autoprefixer, the config's format should match the options outlined here: https://github.com/sindresorhus/gulp-autoprefixer
+
+## Sourcemap
+User to specify whether or not sourcemaps is active along with the configuration for sourcemaps, the config's format should match the options outlined here: https://github.com/floridoo/gulp-sourcemaps
 
 ## Destination Folder
 This option specifies the location where your completed bundles are going to be written to, it's relative to the current working directory, in most cases this would be your project's directory
