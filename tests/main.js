@@ -8,6 +8,7 @@ var bundle = require('../'),
 	fixtures = require('./fixtures').fixtures,
 	gulpTaskFactory = require('../GulpTaskFactory').gulpTaskFactory,
 	cp = require('child_process'),
+    JsDiff = require('diff'),
 	junk = require('junk'),
 	BundleTest = function() {
 		var self = this,
@@ -151,7 +152,6 @@ describe('gulp-bundle-files', function() {
 		});
 
 		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
-			this.timeout(15000);
 			cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
@@ -160,21 +160,52 @@ describe('gulp-bundle-files', function() {
 						}
 						files = files.filter(junk.not);
 
-						if(files.length == 3) {
+						if(files.length == 5) {
 							files.forEach(function(element, index) {
-								if(!fs.existsSync(path.join('../dist/', element))) {
+								if(!fs.existsSync(path.join(__dirname, '../dist/js/', element))) {
 									return false;
 								}
 							});
+                            done();
 						}
 					});
 				}
-				done();
 			});
 		});
 
         it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
-            this.timeout(15000);
+            cp.exec('gulp bundle', function(error, stdout, stderror) {
+                if(error == null) {
+                    fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+                        if(err) {
+                            throw err;
+                        }
+                        files = files.filter(junk.not);
+
+                        if(files.length === 5) {
+                            files.forEach(function(element, index) {
+                                if(!fs.existsSync(path.join(__dirname, '../dist/js/', element))) {
+                                    return false;
+                                }
+                            });
+
+                            var fileOne = fs.readFileSync(path.join(__dirname, '../dist/js', files[4])).toString(),
+                                fileTwo = fs.readFileSync(path.join(__dirname, '../dist/js', files[2])).toString(),
+                                diff = JsDiff.diffTrimmedLines(fileOne, fileTwo);
+
+                            diff.forEach(function(element, index) {
+                                if(element.count > 1) {
+                                    return false;
+                                }
+                            });
+                            done();
+                        }
+                    });
+                }
+            });
+        });
+
+        it('should pass, gulp --mode production should run with sample config and result in 2 built and minified JS files', function(done) {
             cp.exec('gulp bundle --mode production', function(error, stdout, stderror) {
                 if(error == null) {
                     fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
@@ -183,21 +214,30 @@ describe('gulp-bundle-files', function() {
                         }
                         files = files.filter(junk.not);
 
-                        if(files.length == 3) {
+                        if(files.length === 5) {
                             files.forEach(function(element, index) {
-                                if(!fs.existsSync(path.join('../dist/', element))) {
+                                if(!fs.existsSync(path.join(__dirname, '../dist/js/', element))) {
                                     return false;
                                 }
                             });
+                            var fileOne = fs.readFileSync(path.join(__dirname, '../dist/js', files[0])).toString(),
+                                fileTwo = fs.readFileSync(path.join(__dirname, '../dist/js', files[2])).toString(),
+                                diff = JsDiff.diffTrimmedLines(fileOne, fileTwo);
+
+                            diff.forEach(function(element, index) {
+                                if(element.count > 1) {
+                                    return false;
+                                }
+                            });
+                            done();
                         }
                     });
                 }
-                done();
+
             });
         });
 
 		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
-			this.timeout(15000);
 			cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/css'), function(err, files) {
@@ -206,16 +246,16 @@ describe('gulp-bundle-files', function() {
 						}
 						files = files.filter(junk.not);
 
-						if(files.length == 2) {
+						if(files.length === 2) {
 							files.forEach(function(element, index) {
 								if(!fs.existsSync(path.join('../dist/', element))) {
 									return false;
 								}
 							});
+                            done();
 						}
 					});
 				}
-				done();
 			});
 		});
 	});
