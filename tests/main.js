@@ -205,6 +205,37 @@ describe('gulp-bundle-files', function() {
             });
         });
 
+        it('should throw, gulp should run with sample config and result in 2 built JS files, they shouldn not match the preminified files' , function(done) {
+            cp.exec('gulp bundle', function(error, stdout, stderror) {
+                if(error == null) {
+                    fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
+                        if(err) {
+                            throw err;
+                        }
+                        files = files.filter(junk.not);
+
+                        if(files.length === 5) {
+                            files.forEach(function(element, index) {
+                                if(!fs.existsSync(path.join(__dirname, '../dist/js/', element))) {
+                                    return false;
+                                }
+                            });
+
+                            var fileOne = fs.readFileSync(path.join(__dirname, '../dist/js', files[0])).toString(),
+                                fileTwo = fs.readFileSync(path.join(__dirname, '../dist/js', files[2])).toString(),
+                                diff = JsDiff.diffTrimmedLines(fileOne, fileTwo);
+
+                            diff.forEach(function(element, index) {
+                                if(element.count > 1) {
+                                    done();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
         it('should pass, gulp --mode production should run with sample config and result in 2 built and minified JS files', function(done) {
             cp.exec('gulp bundle --mode production', function(error, stdout, stderror) {
                 if(error == null) {
