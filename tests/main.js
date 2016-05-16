@@ -167,8 +167,8 @@ describe('gulp-bundle-files', function() {
 									return false;
 								}
 							});
-                            done();
 						}
+                        done();
 					});
 				}
 			});
@@ -200,8 +200,8 @@ describe('gulp-bundle-files', function() {
                                     return false;
                                 }
                             });
-                            done();
                         }
+                        done();
                     });
                 }
             });
@@ -234,6 +234,7 @@ describe('gulp-bundle-files', function() {
                                 }
                             });
                         }
+                        done();
                     });
                 }
             });
@@ -264,8 +265,9 @@ describe('gulp-bundle-files', function() {
                                     return false;
                                 }
                             });
-                            done();
+
                         }
+                        done();
                     });
                 }
 
