@@ -152,7 +152,8 @@ describe('gulp-bundle-files', function() {
 		});
 
 		it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
-			cp.exec('gulp bundle', function(error, stdout, stderror) {
+            this.timeout(15000);
+            cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
 						if(err) {
@@ -173,7 +174,8 @@ describe('gulp-bundle-files', function() {
 			});
 		});
 
-        it('should pass, gulp should run with sample config and result in 2 built JS files', function(done) {
+        it('should pass, gulp should run with sample config and result in 2 built JS files that are not minified', function(done) {
+            this.timeout(15000);
             cp.exec('gulp bundle', function(error, stdout, stderror) {
                 if(error == null) {
                     fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
@@ -205,7 +207,8 @@ describe('gulp-bundle-files', function() {
             });
         });
 
-        it('should throw, gulp should run with sample config and result in 2 built JS files, they shouldn not match the preminified files' , function(done) {
+        it('should throw, gulp should run with sample config and result in 2 built JS files, they should not match the preminified files' , function(done) {
+            this.timeout(15000);
             cp.exec('gulp bundle', function(error, stdout, stderror) {
                 if(error == null) {
                     fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
@@ -237,6 +240,7 @@ describe('gulp-bundle-files', function() {
         });
 
         it('should pass, gulp --mode production should run with sample config and result in 2 built and minified JS files', function(done) {
+            this.timeout(15000);
             cp.exec('gulp bundle --mode production', function(error, stdout, stderror) {
                 if(error == null) {
                     fs.readdir(path.join(__dirname, '/../dist/js'), function(err, files) {
@@ -269,7 +273,8 @@ describe('gulp-bundle-files', function() {
         });
 
 		it('should pass, gulp should run with sample config and result in 1 built CSS files', function(done) {
-			cp.exec('gulp bundle', function(error, stdout, stderror) {
+            this.timeout(15000);
+            cp.exec('gulp bundle', function(error, stdout, stderror) {
 				if(error == null) {
 					fs.readdir(path.join(__dirname, '/../dist/css'), function(err, files) {
 						if(err) {
