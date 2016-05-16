@@ -229,8 +229,8 @@ describe('gulp-bundle-files', function() {
                                 diff = JsDiff.diffTrimmedLines(fileOne, fileTwo);
 
                             diff.forEach(function(element, index) {
-                                if(element.count > 1) {
-                                    done();
+                                if(element.count <= 1) {
+                                    return false;
                                 }
                             });
                         }
