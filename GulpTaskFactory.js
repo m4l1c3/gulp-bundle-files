@@ -7,8 +7,6 @@ var concat = require('gulp-concat'),
 	path = require('path'),
 	config = require('./package.json'),
 	gulp = require('gulp'),
-    cssnano = require('gulp-cssnano'),
-	autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
 	PluginError = gutil.PluginError;
 
@@ -39,18 +37,6 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 							concat(gulpTask)
 						)
 					)
-                    .pipe(
-                        gulpif(
-                            options.cssnano.active && !isJs,
-                            cssnano(options.cssnano.config)
-                        )
-                    )
-                    .pipe(
-                        gulpif(
-                            options.autoprefixer.active && !isJs,
-                            autoprefixer(options.autoprefixer.config)
-                        )
-                    )
                     .pipe(
                         gulpif(
                             !options.isProductionBuild && options.sourcemap !== undefined && options.sourcemap.active,

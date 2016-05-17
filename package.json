@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.6.667",
+  "version": "1.7.666",
   "description": "Gulp module to concatenate and postprocess configured bundles",
   "main": "index.js",
   "scripts": {
@@ -17,12 +17,9 @@
     "concat",
     "javascript",
     "optimization",
-    "css",
     "uglify",
     "minify",
-    "gulp-concat",
-    "postcss",
-    "gulp-autoprefixer"
+    "gulp-concat"
   ],
   "author": "m4l1c3",
   "license": "MIT",
@@ -31,9 +28,7 @@
   },
   "homepage": "https://github.com/m4l1c3/gulp-bundle-files#readme",
   "dependencies": {
-    "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-cssnano": "^2.1.2",
     "gulp-if": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.2",
