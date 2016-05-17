@@ -64,12 +64,6 @@ Used to specify whether or not concat is active along with the configuration for
 ## Uglify
 Used to specify whether or not uglify is active along with the configuration for uglify, the config's format should match the options outlined here: https://github.com/terinjokes/gulp-uglify
 
-## Cssnano
-Used to specify whether or not cssnano is active along with the configuration for cssnano, the config's format should match the options outlined here: https://github.com/ben-eb/gulp-cssnano
-
-## Autoprefixer
-Used to specify whether or not autoprefixer is active along with the configuration for autoprefixer, the config's format should match the options outlined here: https://github.com/sindresorhus/gulp-autoprefixer
-
 ## Sourcemap
 User to specify whether or not sourcemaps is active along with the configuration for sourcemaps, the config's format should match the options outlined here: https://github.com/floridoo/gulp-sourcemaps
 
