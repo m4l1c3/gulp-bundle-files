@@ -47,12 +47,11 @@ module.exports  = function(options, test) {
 				if (!options.files[taskName].length) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
-                
+
 				//parent task has been run, inject task into gulps task
 				/* istanbul ignore if */
 				if(gulp.seq.indexOf(options.parentTaskName) > -1) {
                     options.isProductionBuild = (isProductionBuild) ? true : false;
-                    console.log('here');
                     GulpTaskFactory(taskName, options);
 					gulp.seq.push(taskName);
 				}
