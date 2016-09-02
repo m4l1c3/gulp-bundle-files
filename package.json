@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.7.2664",
+  "version": "1.6.66",
   "description": "Gulp module to concatenate and postprocess configured bundles",
   "main": "index.js",
   "scripts": {
@@ -42,11 +42,11 @@
     "eslint": "^2.10.2",
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
-    "gulp-mocha": "^2.2.0",
+    "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "istanbul": "^0.4.2",
     "junk": "^1.0.2",
-    "mocha": "^2.4.5",
+    "mocha": "^3.0.2",
     "mocha-lcov-reporter": "^1.0.0",
     "should": "^8.2.2",
     "stream-array": "^1.1.1",
