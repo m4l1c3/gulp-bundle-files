@@ -23,7 +23,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 		}
 
 		/* istanbul ignore next */
-		return gulp.task(gulpTask, function() {
+		return gulp.task(gulpTask, function(done) {
 				gulp.src(options.files[gulpTask])
                     .pipe(
                         gulpif(
@@ -50,6 +50,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 						)
 					)
 					.pipe(gulp.dest(options.destinationFolder));
+					done();
 			}
 		);
 	};
