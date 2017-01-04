@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.8.3996",
+  "version": "1.8.4662",
   "description": "Gulp module to concatenate and postprocess configured bundles",
   "main": "index.js",
   "scripts": {
