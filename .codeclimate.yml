@@ -1,0 +1,21 @@
+engines:
+    duplication:
+        enabled: true
+        config:
+            languages:
+                - javascript
+                - css
+    eslint:
+        enabled: true
+    csslint:
+        enabled: true
+    fixme:
+        enabled: true
+    ratings:
+        paths:
+            - "**.js"
+            - "**.css"
+
+    exclude_paths:
+        - "node_modules/**/*"
+        - "tests/**/*"
