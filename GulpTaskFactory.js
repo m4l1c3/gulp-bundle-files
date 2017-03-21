@@ -45,7 +45,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
                     )
 					.pipe(
 						gulpif(
-						    isJs && options.isProductionBuild,
+						    isJs && options.isProductionBuild && options.uglify.active,
 							uglify(options.uglify.config)
 						)
 					)
