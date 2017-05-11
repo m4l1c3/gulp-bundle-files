@@ -1,6 +1,6 @@
 {
   "name": "gulp-bundle-files",
-  "version": "1.9.3776",
+  "version": "1.9.3777",
   "description": "Gulp module to concatenate and postprocess configured bundles",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "gulp-sourcemaps": "^2.5.0",
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.7",
-    "yargs": "^7.0.2"
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "coveralls": "^2.13.1",
