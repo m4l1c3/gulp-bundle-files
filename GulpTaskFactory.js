@@ -10,8 +10,8 @@ var concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
 	PluginError = gutil.PluginError;
 
-exports.gulpTaskFactory = function(gulpTask, options) {
-	var task = function (gulpTask, options) {
+exports.gulpTaskFactory = function(gulpTask, bundle, options) {
+	var task = function (gulpTask, bundle, options) {
 		var isJs = gulpTask.indexOf('.js') > 0;
 
 		if (options.concat !== undefined && options.concat.active && options.concat.config === undefined) {
@@ -22,9 +22,11 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 			throw new PluginError(config.name, 'No uglify settings');
 		}
 
+		
+
 		/* istanbul ignore next */
-		return gulp.task(gulpTask, function(done) {
-				gulp.src(options.files[gulpTask])
+		gulp.task(gulpTask, function() {
+			return gulp.src(bundle[gulpTask])
                     .pipe(
                         gulpif(
                             !options.isProductionBuild && options.sourcemap !== undefined && options.sourcemap.active,
@@ -50,9 +52,8 @@ exports.gulpTaskFactory = function(gulpTask, options) {
 						)
 					)
 					.pipe(gulp.dest(options.destinationFolder));
-					done();
 			}
 		);
 	};
-	return task(gulpTask, options);
+	return task(gulpTask, bundle, options);
 };
