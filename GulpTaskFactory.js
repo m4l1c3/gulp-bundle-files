@@ -34,7 +34,7 @@ exports.gulpTaskFactory = function(gulpTask, options) {
                     .pipe(
 						gulpif(
 							options.concat.active,
-							concat(gulpTask)
+							concat(gulpTask, {newLine: ';'})
 						)
 					)
                     .pipe(
