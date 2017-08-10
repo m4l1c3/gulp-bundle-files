@@ -38,6 +38,7 @@ The plugin assumes your task for bundling is named "bundle" if you have a differ
     "config": {}
   },
   "destinationFolder": "dist",
+  "newLine": ";",
   "files": {
     "js/test.js": [
       "tests/fixtures.js",

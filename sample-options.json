@@ -23,6 +23,7 @@
     "config": {}
   },
   "destinationFolder": "dist",
+  "newLine": ";",
   "files": {
     "js/test.js": [
       "tests/fixtures.js",
