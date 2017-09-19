@@ -7,6 +7,7 @@ npm-debug.log*
 dist/js/test.js
 dist/js/test2.js
 dist/css/test.css
+*.orig
 # Runtime data
 pids
 *.pid
@@ -38,3 +39,6 @@ node_modules
 
 # webstorm project dir
 .idea/
+
+#coveity
+cov-int

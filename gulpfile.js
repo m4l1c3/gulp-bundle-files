@@ -16,9 +16,17 @@ gulp.task('mocha', ['lint'], function() {
         .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('bundle', function() {
-    gulpBundleFiles(bundles);
+gulp.task('prebundle', function(done) {
+    gulpBundleFiles(bundles.preBundle, bundles); 
+    done();
 });
+
+gulp.task('bundle', ['prebundle'], function(done) {
+    gulpBundleFiles(bundles.files, bundles);
+    done();
+});
+
+
 
 gulp.task('watch', function() {
     gulp.watch(['tests/fixtures.js', 'tests/main.js', '*.js'], ['mocha']);

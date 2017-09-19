@@ -9,7 +9,7 @@ var config = require('./package.json'),
     isProductionBuild = argv.mode === 'production',
 	HandleInvalidPackages = require('./InvalidPackage').HandleInvalidPackages;
 
-module.exports  = function(options, test) {
+module.exports  = function(bundle, options, done, test) {
 	test = test || false;
 
 	var bundles,
@@ -22,18 +22,18 @@ module.exports  = function(options, test) {
 	if(options.destinationFolder === undefined || options.destinationFolder.length < 1) {
 		throw new PluginError(config.name, 'Missing destinationFolder gulp-bundle-files');
 	}
-	if ('object' !== typeof options.files) {
+	if ('object' !== typeof bundle) {
 		throw new PluginError(config.name, 'File input in wrong format, please use an array or object.');
 	}
 
 	//setup an array of all the destination
 	//filenames to be used as the task/bundle name
-	bundles = Object.keys(options.files);
+	bundles = Object.keys(bundle);
 
 	if (!bundles.length) {
 		throw new PluginError(config.name, 'No file input stored in options.files.');
 	} else {
-		var validPackages = BundleCheck(bundles, options.files);
+		var validPackages = BundleCheck(bundles, bundle);
 
 		//if no valid packages, handle showing user's the errors
 		if (validPackages !== true) {
@@ -44,18 +44,19 @@ module.exports  = function(options, test) {
 				if (taskName === '') {
 					throw new PluginError(config.name, 'Error creating bundle: no bundle name');
 				}
-				if (!options.files[taskName].length) {
+				if (!bundle[taskName].length) {
 					throw new PluginError(config.name, 'No files inside named bundle');
 				}
 
 				//parent task has been run, inject task into gulps task
 				/* istanbul ignore if */
-				if(gulp.seq.indexOf(options.parentTaskName) > -1) {
-                    options.isProductionBuild = (isProductionBuild) ? true : false;
-                    GulpTaskFactory(taskName, options);
+				if(gulp.seq.indexOf(options.parentTaskName) || gulp.seq.indexOf('pre' + options.parentTaskName) > -1) {
+					options.isProductionBuild = (isProductionBuild) ? true : false;
+                    GulpTaskFactory(taskName, bundle, options);
 					gulp.seq.push(taskName);
 				}
 			});
+			
 		}
 	}
 };

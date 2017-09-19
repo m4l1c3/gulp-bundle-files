@@ -26,6 +26,7 @@
   "newLine": ";",
   "files": {
     "js/test.js": [
+      "dist/js/prebundle.js",
       "tests/fixtures.js",
       "tests/main.js"
     ],
