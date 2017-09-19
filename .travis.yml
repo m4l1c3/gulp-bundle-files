@@ -31,7 +31,7 @@ addons:
     project:
       name: "m4l1c3/gulp-bundle-files"
       description: "Build submitted via Travis CI"
-    notification_email: jon@jonsomnia.com
+    notification_email: "jon@jonsomnia.com"
       build_command_prepend: ""
       build_command:   ""
       branch_pattern: master
