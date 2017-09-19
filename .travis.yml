@@ -16,9 +16,9 @@ node_js:
   - "5"
   - "4"
 
-global:
-  env:
-    - CXX=g++-4.8
+env:
+  - CXX=g++-4.8
+  global:
     - secure: "sWofONa0f5uRmViaubYiZrEEX9ztLifUL7Jor9K81IsmoF5Maiuic/48Z/uc1Vp3rc2LndscueWsB94EysNZR0BOPIIfCkbtdxH07gZJjiRPKQdDiCrVdC1xwWIHSpTTzEtIhJnLrcC2hfjvHouTUFCFS6c+bOeAMzLGqUZyDwD7p+FUJAXR3zGUtKpjf1oBLMagufbVFR8lGJPRqvqkxH3vhIT0szLLcc0cyJ5JCqRR7+mQqoacbqj5fSJnN2DXUMoijITcTF5yqd/Nu7+0X5NpDW0anN+Ba/ijYNzbr8jzjlTbxPC8t8ykspGNJpqTVr8ooI4wvnsaCwwD0HvxeOwYhrlG3wFbKRS75m9Zz7LylIFU8E1ZXDJFObjdQklJGVlk8/fVQODstsYIj8GynvhdRBmzmovXcthXBEvUXhjmM9uBwYbR90mHoE8c/Hq3Nd3CWD+cc1Ft9h2EBjvq+9MFgyNkNEhhj6SYP9HF5M21sTeLpQqMmaaGB84P+waN6bPIUNLnKKbWrv+gWS26VVHEZdvhEdUho3CA0iMcas5JWPI6VSYG8iVioDq9fAX5iqlm+goBq1Wt/ACEnfUgcWCN7NpodaFD1ZV0YRR+yqENTmudrKaMTmC4nkluYbxqQnz64YTQjSKcjMxNTLrzOyiM0Oz1LwtDHXb9N2K794E="
 
 addons:
