@@ -12,6 +12,7 @@ after_success: 'make coveralls'
 sudo: false
 language: node_js
 node_js:
+  - "8"
   - "6"
   - "5"
   - "4"
