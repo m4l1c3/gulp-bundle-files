@@ -33,19 +33,19 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "yargs": "^9.0.1"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "diff": "^3.3.1",
     "equals": "^1.0.5",
     "eslint": "^4.10.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.0",
-    "gulp-mocha": "^4.3.1",
+    "gulp-mocha": "^5.0.0",
     "istanbul": "^0.4.5",
     "junk": "^2.1.0",
-    "mocha": "^3.5.3",
+    "mocha": "^5.0.5",
     "mocha-lcov-reporter": "^1.3.0",
     "should": "^13.1.3",
     "stream-array": "^1.1.2",
