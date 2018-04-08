@@ -22,4 +22,4 @@ exclude_paths:
 - spec/**/*
 - node_modules/**/*
 - "**/vendor/**/*"
-
+- "**/tests/**/*"
