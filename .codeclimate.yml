@@ -1,21 +1,25 @@
 engines:
-    duplication:
-        enabled: true
-        config:
-            languages:
-                - javascript
-                - css
-    eslint:
-        enabled: true
-    csslint:
-        enabled: true
-    fixme:
-        enabled: true
-    ratings:
-        paths:
-            - "**.js"
-            - "**.css"
+  rubocop:
+    enabled: true
+    #checks:
+    #  Rubocop/Metrics/ClassLength:
+    #    enabled: false
+  brakeman:
+    enabled: false
+  eslint:
+    enabled: true
+  csslint:
+    enabled: false
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript:
+ratings:
+  paths:
+  - "**.js"
+exclude_paths:
+- spec/**/*
+- node_modules/**/*
+- "**/vendor/**/*"
 
-    exclude_paths:
-        - "node_modules/**/*"
-        - "tests/**/*"
