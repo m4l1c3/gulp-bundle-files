@@ -39,7 +39,7 @@
     "snyk": "^1.71.0"
   },
   "devDependencies": {
-    "coveralls": "^2.13.2",
+    "coveralls": "^3.0.1",
     "diff": "^3.5.0",
     "equals": "^1.0.5",
     "eslint": "^4.18.2",
