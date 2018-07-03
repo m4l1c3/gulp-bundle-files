@@ -99,7 +99,7 @@ describe('gulp-bundle-files', function() {
             (function() {
                 fixture.get('bag-uglify');
             }).should.throw(
-                new TypeError('Path must be a string. Received undefined')
+                new TypeError('The "path" argument must be of type string')
             );
         });
 
