@@ -44,7 +44,7 @@
     "equals": "^1.0.5",
     "eslint": "^5.0.1",
     "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.0",
+    "gulp-eslint": "^6.0.0",
     "gulp-mocha": "^6.0.0",
     "istanbul": "^0.4.5",
     "junk": "^2.1.0",
