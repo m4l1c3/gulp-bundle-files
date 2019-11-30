@@ -42,7 +42,7 @@
     "coveralls": "^3.0.1",
     "diff": "^3.5.0",
     "equals": "^1.0.5",
-    "eslint": "^5.0.1",
+    "eslint": "^6.7.2",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.0",
     "gulp-mocha": "^6.0.0",
