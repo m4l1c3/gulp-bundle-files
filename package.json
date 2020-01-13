@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.1",
-    "diff": "^3.5.0",
+    "diff": "^4.0.2",
     "equals": "^1.0.5",
     "eslint": "^5.0.1",
     "gulp": "^3.9.1",
